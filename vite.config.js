@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 
-dotenv.config();  // Load .env variables
+dotenv.config();  
 
 
 import { defineConfig } from 'vite'
