@@ -4,6 +4,7 @@ const baseQuery = fetchBaseQuery({
   baseUrl: "https://storytime-backend-2-aa40.onrender.com",
   prepareHeaders: (headers, { getState }) => {
     const state = getState();
+    
  
     const token = state.auth.token;
     if (token) {
