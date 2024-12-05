@@ -11,7 +11,7 @@ import svgr from "vite-plugin-svgr";
 export default defineConfig({
   plugins: [react(), svgr()],
   server: {
-    port: import.meta.env.VITE_PORT || 3000,
+    port: process.env.VITE_PORT || 3000,
     host: "0.0.0.0",
   },
 });
