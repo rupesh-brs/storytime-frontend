@@ -39,9 +39,7 @@ const validationSchema = Yup.object().shape({
 
 const RegisterPage = () => {
   const navigate = useNavigate();
-
   const [registerAPI] = useRegisterAPIMutation();
-
   const [open, setOpen] = useState(false);
 
   const onOpenModal = () => setOpen(true);
@@ -61,11 +59,26 @@ const RegisterPage = () => {
       resetForm();
       setSubmitting(false);
       navigate("/login");
-    } catch (error) {
-  
+    } catch(error){
       toast.error(error?.data?.message || error.error);
     }
   };
+
+    //   // Handle successful registration
+    //   if (response && response.message) {
+    //     toast.success(response.message); // Show success message
+    //     resetForm();
+    //     navigate("/login");
+    //   }
+    // } catch (error) {
+    //   // Handle error properly
+    //   const errorMessage = error?.data?.message || error.error || "An error occurred during registration.";
+    //   toast.error(errorMessage); // Show error message in toast
+    // } finally {
+    //   setSubmitting(false);
+    // }
+ 
+
   return (
     <>
       <div className="grid place-items-center mb-3">
@@ -84,6 +97,7 @@ const RegisterPage = () => {
                   <h3 className="Auth-form-title py-2 text-center">Sign Up</h3>
                   <hr />
 
+                  {/* Email Field */}
                   <div className="form-group mt-5 px-5 py-2 border border-gray-300 rounded-lg mx-5">
                     <Field
                       type="email"
@@ -93,13 +107,10 @@ const RegisterPage = () => {
                     />
                   </div>
                   <div className="px-5 pt-2">
-                    <ErrorMessage
-                      className="err_msg"
-                      name="email"
-                      component="div"
-                    />
+                    <ErrorMessage className="err_msg" name="email" component="div" />
                   </div>
 
+                  {/* First Name Field */}
                   <div className="flex justify-between">
                     <div>
                       <div className="form-group mt-3 px-5 py-2 border border-gray-300 rounded-lg mx-5">
@@ -111,13 +122,11 @@ const RegisterPage = () => {
                         />
                       </div>
                       <div className="px-5 pt-2">
-                        <ErrorMessage
-                          className="err_msg"
-                          name="first_name"
-                          component="div"
-                        />
+                        <ErrorMessage className="err_msg" name="first_name" component="div" />
                       </div>
                     </div>
+
+                    {/* Last Name Field */}
                     <div>
                       <div className="form-group mt-3 px-5 py-2 border border-gray-300 rounded-lg mx-5">
                         <Field
@@ -128,15 +137,12 @@ const RegisterPage = () => {
                         />
                       </div>
                       <div className="px-5 pt-2">
-                        <ErrorMessage
-                          className="err_msg"
-                          name="last_name"
-                          component="div"
-                        />
+                        <ErrorMessage className="err_msg" name="last_name" component="div" />
                       </div>
                     </div>
                   </div>
 
+                  {/* Password Field */}
                   <div className="form-group mt-3 px-5 py-2 border border-gray-300 rounded-lg mx-5">
                     <Field
                       type="password"
@@ -146,13 +152,10 @@ const RegisterPage = () => {
                     />
                   </div>
                   <div className="px-5 pt-2">
-                    <ErrorMessage
-                      className="err_msg"
-                      name="password"
-                      component="div"
-                    />
+                    <ErrorMessage className="err_msg" name="password" component="div" />
                   </div>
 
+                  {/* Confirm Password Field */}
                   <div className="form-group mt-3 px-5 py-2 border border-gray-300 rounded-lg mx-5">
                     <Field
                       type="password"
@@ -162,13 +165,10 @@ const RegisterPage = () => {
                     />
                   </div>
                   <div className="px-5 pt-2">
-                    <ErrorMessage
-                      className="err_msg"
-                      name="confirmPassword"
-                      component="div"
-                    />
+                    <ErrorMessage className="err_msg" name="confirmPassword" component="div" />
                   </div>
 
+                  {/* Accept Terms */}
                   <div className="flex items-center justify-between mt-3 px-5">
                     <div className="flex items-center">
                       <Field
@@ -176,48 +176,34 @@ const RegisterPage = () => {
                         type="checkbox"
                         className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
                       />
-                      <label
-                        htmlFor="acceptTerms"
-                        className="ml-2 text-sm text-gray-900 rounded"
-                      >
+                      <label htmlFor="acceptTerms" className="ml-2 text-sm text-gray-900 rounded">
                         &nbsp;I agree with
-                        <span
-                          className="no-underline hover:underline cursor-pointer "
-                          onClick={onOpenModal}
-                        >
+                        <span className="no-underline hover:underline cursor-pointer" onClick={onOpenModal}>
                           Terms & Conditions
                         </span>
                       </label>
                       &nbsp; &nbsp;
-                      <ErrorMessage
-                        className="err_msg"
-                        name="acceptTerms"
-                        component="div"
-                      />
-                      <div>{values.acceptTerms ? "Checked" : "Unchecked"}</div>
+                      <ErrorMessage className="err_msg" name="acceptTerms" component="div" />
                     </div>
                   </div>
 
+                  {/* Submit Button */}
                   <div className="d-grid gap-2 mt-2 px-5 mb-2">
                     <button
                       type="submit"
                       disabled={isSubmitting}
                       className={`block w-full bg-blue-500 py-2 px-4 rounded-xl btnPurpleColor ${
-                        isSubmitting
-                          ? "bg-blue-400 cursor-not-allowed"
-                          : "bg-blue-500 hover:bg-blue-700 text-white font-bold"
+                        isSubmitting ? "bg-blue-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-700 text-white font-bold"
                       }`}
                     >
                       Continue
                     </button>
                   </div>
 
+                  {/* Sign In Link */}
                   <div className="text-center text-sm text-black py-6 bg-gray-300 rounded-b-xl bg-opacity-20">
                     Already registered?
-                    <NavLink
-                      className="greyColor font-medium text-purple-600 hover:text-purple-500 text-center py-2 ml-3 linkColor"
-                      to="/login"
-                    >
+                    <NavLink className="greyColor font-medium text-purple-600 hover:text-purple-500 text-center py-2 ml-3 linkColor" to="/login">
                       Sign In
                     </NavLink>
                   </div>
@@ -226,6 +212,9 @@ const RegisterPage = () => {
             </Formik>
           </div>
         </div>
+
+      
+
         <Modal open={open} onClose={onCloseModal} center>
           <h1 className="text-black">Terms & Conditions</h1>
           <br />
