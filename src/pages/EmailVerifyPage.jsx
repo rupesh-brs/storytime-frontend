@@ -1,36 +1,6 @@
-import { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
-
-
 const EmailVerifyPage = () => {
-  const { verify_token } = useParams(); // Retrieve token from route parameters
-  const [verify, setVerify] = useState(""); // State to display the verification message
-
-  // API endpoint with the dynamic token
-  const url = `https://storytime-backend-2-aa40.onrender.com/api/users/verifyEmail/${verify_token}`;
-
-  useEffect(() => {
-    const verifyEmail = async () => {
-      try {
-        // Fetch API to verify email
-        const response = await fetch(url);
-
-        if (response.status === 200 || response.status === 201) {
-          // Success: Token valid or already verified
-          setVerify("Email Verified! Please login.");
-        } else {
-          // Error responses
-          setVerify("Verification failed. Please try again.");
-        }
-      } catch (error) {
-        // Catch network or other errors
-        setVerify("An error occurred while verifying your email.");
-        console.error("Verification Error:", error);
-      }
-    };
-
-    verifyEmail(); // Call the function on component load
-  }, [url]); // Dependency to re-run if URL changes (rare case)
   return (
     <>
       <div>
