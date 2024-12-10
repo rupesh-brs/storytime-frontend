@@ -7,7 +7,7 @@ const EmailVerifyPage = () => {
   const [verify, setVerify] = useState(""); // State to display the verification message
 
   // API endpoint with the dynamic token
-  const url = `https://storytime-backend-2-aa40.onrender.com/api/users/verifyEmail/${verify_token}`;
+  const url = `https://storytime-backend-2-aa40.onrender.com/api/users/verifyEmail/${verifytoken}`;
 
   useEffect(() => {
     const verifyEmail = async () => {
