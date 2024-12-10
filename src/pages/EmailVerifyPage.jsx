@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 
 const EmailVerifyPage = () => {
-  const { verifytoken } = useParams(); // Retrieve token from route parameters
+  const { verify_token } = useParams(); // Retrieve token from route parameters
   const [verify, setVerify] = useState(""); // State to display the verification message
 
   // API endpoint with the dynamic token
-  const url = `https://storytime-backend-2-aa40.onrender.com/api/users/verifyEmail/${verifytoken}`;
+  const url = `https://storytime-backend-2-aa40.onrender.com/api/users/verifyEmail/${verify_token}`;
 
   useEffect(() => {
     const verifyEmail = async () => {
